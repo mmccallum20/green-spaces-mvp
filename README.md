@@ -8,7 +8,7 @@ Green Spaces App is an app that helps you plan your walking activities to local 
 
 Motivation and Description
 
-Over the past year, many governments worldwide instituted lockdowns for their citizens to prevent the spread of COVID-19. This has had a serious negative impact on the mental health of the general population, particularly those from lower socio-economic backgrounds. (<https://www.mind.org.uk/media-a/5929/the-mental-health-emergency_a4_final.pdf>).
+Over the past year, many governments worldwide instituted lockdowns for their citizens to prevent the spread of COVID-19. This has had a serious negativenpx express-generator impact on the mental health of the general population, particularly those from lower socio-economic backgrounds. (<https://www.mind.org.uk/media-a/5929/the-mental-health-emergency_a4_final.pdf>).
 
 In the UK currently, one of the few permitted recreational reasons to leave the house is to “exercise with your household (or support bubble) or one other person (in which case you should stay 2m apart). Exercise should be limited to once per day, and you should not travel outside your local area.” Source: <https://www.gov.uk/guidance/national-lockdown-stay-at-home#summary-what-you-can-and-cannot-do-during-the-national-lockdown>
 
