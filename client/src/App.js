@@ -1,47 +1,54 @@
 import React, { useState } from "react";
 import ResultsPage from "./components/ResultsPage";
-import PostcodePage from "./components/PostcodePage";
 import "./App.css";
 
 function App() {
- 
- const [postcodePage, setPostcodePage] = useState(true);
+  const [postcode, setPostcode] = useState("");
+  const [toggleResults, setToggleResults] = useState(true);
 
-const handleChangeView = (postcodePage) => {
-  setPostcodePage(postcodePage);
-}
+  const toggleResultsPage = () => {
+    setToggleResults(!toggleResults);
+  };
 
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+
+    switch (name) {
+      case "postcode":
+        setPostcode(value);
+        break;
+      default:
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Do not send to server
+    console.log(postcode); // Just to check if button works
+    //let newPostcode = { postcode }; // defining a newProject
+    // props.addPostcode(newPostcode); // add the project using props
+    setPostcode("");
+    toggleResultsPage();
+  };
 
   return (
     <div className="App">
-
-    <nav>
-        <button
-          // Whilst in adminView, show button-active styling (see App.css)
-          className={postcodePage ? "button-active" : "button"}
-          onClick={() => handleChangeView(true)}
-        >
-          POSTCODE PAGE
-        </button>
-
-        <button
-          // Whilst NOT in adminView, show button-active styling - so
-          // both of these buttons toggle between the styling (see App.css)
-          className={!postcodePage ? "button-active" : "button"}
-          onClick={() => handleChangeView(false)}
-        >
-          RESULTS PAGE
-        </button>
-      </nav>
       <h1>Welcome to Green Spaces</h1>
 
-       {postcodePage ? (
-        <PostcodePage postcodePage={postcodePage}/>
-      ) : (
-        <ResultsPage
-        />
-      )}
+      <h2>Enter your UK postcode below to find a local green space.</h2>
 
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="postcode">Postcode</label>
+        <input
+          name="postcode"
+          id="postcode"
+          // Curly brackets here indicate to substitute javascript in here (from above - see line 6, variable)
+          value={postcode}
+          onChange={(e) => handleInputChange(e)}
+        />
+        <button>Submit</button>
+      </form>
+
+      {!toggleResults && <ResultsPage />}
     </div>
   );
 }
