@@ -8,13 +8,9 @@ function PostcodeForm(props) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Do not send to server
+    event.preventDefault();
     props.onSubmit(postcode);
-    //let newPostcode = { postcode }; // defining a newProject
-    // props.addPostcode(newPostcode); // add the project using props
     setPostcode("");
-    //toggleResultsPage();
-    //getPoints();
   };
 
   return (
@@ -26,7 +22,6 @@ function PostcodeForm(props) {
         <input
           name="postcode"
           id="postcode"
-          // Curly brackets here indicate to substitute javascript in here (from above - see line 6, variable)
           value={postcode}
           onChange={(e) => handleInputChange(e)}
         />

@@ -4,16 +4,12 @@ import MapData from "./components/MapData";
 import "./App.css";
 
 const BASE_URL = "https://api.os.uk/search/names/v1/find?query=";
-const API_KEY = "CXG4eNkC3r6uWkRT5Bmg752UppQelq6k";
+const API_KEY = " "; //use a new API key here - please keep in a private file;
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
-
-  // const toggleResultsPage = () => {
-  //   setToggleResults(!toggleResults);
-  // };
 
   async function getData(postcode) {
     let url = `${BASE_URL}${postcode}&maxresults=1&key=${API_KEY}`;
