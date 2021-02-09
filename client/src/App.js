@@ -11,12 +11,17 @@ function App() {
   const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
 
+  async function pause(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   async function getData(postcode) {
     let url = `${BASE_URL}${postcode}&maxresults=1&key=${API_KEY}`;
 
     setLoading(true);
     setError("");
     setMapDetails(null);
+    await pause(1000);
 
     try {
       let response = await fetch(url);
@@ -42,7 +47,9 @@ function App() {
 
       {mapDetails && <MapData mapDetails={mapDetails} />}
 
-      {loading && <h3>Loading your local data...</h3>}
+      {loading && (
+        <h3 style={{ color: "green" }}>Loading your local data...</h3>
+      )}
 
       {error && <h3>{error}</h3>}
     </div>
