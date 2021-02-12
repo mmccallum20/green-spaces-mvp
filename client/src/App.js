@@ -3,8 +3,8 @@ import PostcodeForm from "./components/PostcodeForm";
 import MapData from "./components/MapData";
 import "./App.css";
 
-const BASE_URL = "https://api.os.uk/search/names/v1/find?query=";
-const API_KEY = " "; //use a new API key here - please keep in a private file;
+const BASE_URL = "https://api.postcodes.io/postcodes/";
+//const API_KEY = "aXYIAhYe6lguSqJnAZU7cdS6hxIzVc88"; //use a new API key here - please keep in a private file;
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -16,10 +16,10 @@ function App() {
   }
 
   async function getData(postcode) {
-    let url = `${BASE_URL}${postcode}&maxresults=1&key=${API_KEY}`;
+    let url = `${BASE_URL}${postcode}`;
 
     setLoading(true);
-    setError("");
+    setError(""); // Maybe delete
     setMapDetails(null);
     await pause(1000);
 
