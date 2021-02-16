@@ -12,8 +12,8 @@ function App() {
   const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
   const [viewport, setViewport] = useState({
-    latitude: 51.509865,
-    longitude: -0.118092,
+    latitude: 40.785091,
+    longitude: -73.968285,
     width: "100vw",
     height: "100vh",
     zoom: 10,
@@ -27,7 +27,7 @@ function App() {
     let url = `${BASE_URL}${postcode}`;
 
     setLoading(true);
-    setError(""); // Maybe delete
+    setError(""); // Maybe delete?
     setMapDetails(null);
     await pause(1000);
 
@@ -36,6 +36,7 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setMapDetails(data);
+        // setViewport(viewport) goes here?
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -62,8 +63,9 @@ function App() {
       {error && <h3>{error}</h3>}
 
       <ReactMapGL
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         {...viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
