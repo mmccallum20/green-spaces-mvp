@@ -15,7 +15,10 @@ function PostcodeForm(props) {
 
   return (
     <div className="PostcodeForm">
-      <h2>Enter your UK postcode below to find a local green space.</h2>
+      <h2>
+        Enter your place name, street name, postal or zip code to find a local
+        green space.
+      </h2>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="postcode">Postcode</label>

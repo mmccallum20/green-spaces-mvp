@@ -4,27 +4,21 @@ import MapData from "./components/MapData";
 import ReactMapGL from "react-map-gl";
 import "./App.css";
 
-const BASE_URL = "https://api.postcodes.io/postcodes/";
-//const API_KEY = "aXYIAhYe6lguSqJnAZU7cdS6hxIzVc88"; //use a new API key here - please keep in a private file;
+const BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+const API_KEY =
+  "pk.eyJ1IjoibWFyeW0yMCIsImEiOiJja2w3ZWVjZmYwMWtjMm9sYmg0Nnlnc2loIn0.1CjPEGG3IDVxG5A5X-wuZw"; //use a new API key here - please keep in a private file;
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
-  const [viewport, setViewport] = useState({
-    latitude: 40.785091,
-    longitude: -73.968285,
-    width: "100vw",
-    height: "100vh",
-    zoom: 10,
-  });
 
   async function pause(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function getData(postcode) {
-    let url = `${BASE_URL}${postcode}`;
+    let url = `${BASE_URL}${postcode}.json?access_token=${API_KEY}`;
 
     setLoading(true);
     setError(""); // Maybe delete?
@@ -36,7 +30,6 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setMapDetails(data);
-        // setViewport(viewport) goes here?
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -62,16 +55,7 @@ function App() {
 
       {error && <h3>{error}</h3>}
 
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
-        onViewportChange={(viewport) => {
-          setViewport(viewport);
-        }}
-      >
-        Marker Here
-      </ReactMapGL>
+      <ReactMapGL mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} />
     </div>
   );
 }

@@ -1,28 +1,43 @@
 import React, { useState } from "react";
+import ReactMapGL from "react-map-gl";
 
 function MapData(props) {
+  const [viewport, setViewport] = useState({
+    latitude: 50,
+    longitude: -10,
+    width: "100vw",
+    height: "100vh",
+    zoom: 16,
+  });
+
   let m = props.mapDetails;
 
-  let url =
-    "https://osmaps.ordnancesurvey.co.uk/greenspace/51.49993,-0.12558,15";
+  const newLatitude = m.features[0].center[1];
+  const newLongitude = m.features[0].center[0];
 
-  let element = <a href={url}>OS Map</a>;
+  const handleViewportChange = (event) => {
+    setViewport((prevState) => ({
+      ...prevState,
+      latitude: newLatitude,
+      longitude: newLongitude,
+    }));
+  };
 
   return (
     <div className="MapData">
-      <h2>
-        Location Data for {m.result.postcode}, {m.result.nhs_ha},{" "}
-        {m.result.country}
-      </h2>
-      <ul>
-        {/* {m.POPULATED_PLACE && <li>Place Name: {m.POPULATED_PLACE}</li>}
-        {m.DISTRICT_BOROUGH && <li>Borough: {m.DISTRICT_BOROUGH}</li>}
-        {m.COUNTY_UNITARY && <li>County: {m.COUNTY_UNITARY}</li>} */}
-        <li>Latitude: {m.result.latitude}</li>
-        <li>Longitude: {m.result.longitude}</li>
-
-        {element}
-      </ul>
+      <h2>Location Data for {m.features[0].place_name}</h2>
+      <ul>Your latitude is: {m.features[0].center[0]}</ul>
+      <ul>Your longitude is: {m.features[0].center[1]} </ul>
+      <div>
+        <ReactMapGL
+          {...viewport}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
+          onViewportChange={(e) => handleViewportChange(e)}
+        >
+          Marker Here
+        </ReactMapGL>
+      </div>
     </div>
   );
 }
