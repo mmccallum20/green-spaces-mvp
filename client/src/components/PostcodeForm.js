@@ -21,8 +21,9 @@ function PostcodeForm(props) {
       </h2>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="postcode">Postcode</label>
+        <label htmlFor="postcode" />
         <input
+          placeholder="Enter Location"
           name="postcode"
           id="postcode"
           value={postcode}

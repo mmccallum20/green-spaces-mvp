@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import PostcodeForm from "./components/PostcodeForm";
 import MapData from "./components/MapData";
-import ReactMapGL from "react-map-gl";
+import ParkData from "./components/ParkData";
+import ReactMapGL, { Marker } from "react-map-gl";
 import "./App.css";
 
 const BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-const API_KEY =
-  "pk.eyJ1IjoibWFyeW0yMCIsImEiOiJja2w3ZWVjZmYwMWtjMm9sYmg0Nnlnc2loIn0.1CjPEGG3IDVxG5A5X-wuZw"; //use a new API key here - please keep in a private file;
+const BASE_URL_2 =
+  "https://api.mapbox.com/geocoding/v5/mapbox.places/park.json?&proximity=";
+const API_KEY = process.env.REACT_APP_MAPBOX_TOKEN; //use a new API key here - please keep in a private file;
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [mapDetails, setMapDetails] = useState(null);
+  const [parkDetails, setParkDetails] = useState(null); //do I need an array/object here?
   const [error, setError] = useState("");
 
   async function pause(ms) {
@@ -23,6 +26,7 @@ function App() {
     setLoading(true);
     setError(""); // Maybe delete?
     setMapDetails(null);
+    setParkDetails(null);
     await pause(1000);
 
     try {
@@ -30,6 +34,29 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setMapDetails(data);
+        let newLatitude = data.features[0].center[1];
+        let newLongitude = data.features[0].center[0];
+        getParkData(newLatitude, newLongitude);
+      } else {
+        setError(
+          `Uh oh, server says no: ${response.status} ${response.statusText}`
+        );
+      }
+    } catch (err) {
+      setError(`Uh oh, network says no: ${err.message}`);
+    }
+    setLoading(false);
+  }
+
+  async function getParkData(newLatitude, newLongitude) {
+    let parkDataUrl = `${BASE_URL_2}${newLongitude},${newLatitude}&access_token=${API_KEY}`;
+
+    try {
+      let response = await fetch(parkDataUrl);
+      if (response.ok) {
+        let data = await response.json();
+        setParkDetails(data);
+        console.log("Park data found");
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -56,6 +83,8 @@ function App() {
       {error && <h3>{error}</h3>}
 
       <ReactMapGL mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} />
+
+      {parkDetails && <ParkData parkDetails={parkDetails} />}
     </div>
   );
 }

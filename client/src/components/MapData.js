@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 
 function MapData(props) {
   let m = props.mapDetails;
@@ -22,6 +22,7 @@ function MapData(props) {
       <ul>Your longitude is: {m.features[0].center[0]} </ul>
       <div>
         <ReactMapGL
+          className="mapbox-container" //not sure if I want to keep this
           {...viewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
