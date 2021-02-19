@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 
 function MapData(props) {
-  let m = props.mapDetails;
+  let m = props.mapDetails.features[0];
 
-  const newLatitude = m.features[0].center[1];
-  const newLongitude = m.features[0].center[0];
+  const newLatitude = m.center[1];
+  const newLongitude = m.center[0];
 
   const [viewport, setViewport] = useState({
     latitude: newLatitude,
@@ -17,9 +17,9 @@ function MapData(props) {
 
   return (
     <div className="MapData">
-      <h2>Location Data for {m.features[0].place_name}</h2>
-      <ul>Your latitude is: {m.features[0].center[1]}</ul>
-      <ul>Your longitude is: {m.features[0].center[0]} </ul>
+      <h2>Location Data for {m.place_name}</h2>
+      <ul>Your latitude is: {m.center[1]}</ul>
+      <ul>Your longitude is: {m.center[0]} </ul>
       <div>
         <ReactMapGL
           className="mapbox-container" //not sure if I want to keep this

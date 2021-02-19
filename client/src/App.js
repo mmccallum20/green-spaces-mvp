@@ -56,7 +56,6 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setParkDetails(data);
-        console.log("Park data found");
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -76,15 +75,13 @@ function App() {
 
       {mapDetails && <MapData mapDetails={mapDetails} />}
 
+      {parkDetails && <ParkData parkDetails={parkDetails} />}
+
       {loading && (
         <h3 style={{ color: "green" }}>Loading your local data...</h3>
       )}
 
       {error && <h3>{error}</h3>}
-
-      <ReactMapGL mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} />
-
-      {parkDetails && <ParkData parkDetails={parkDetails} />}
     </div>
   );
 }

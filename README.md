@@ -35,14 +35,14 @@ The app will consist of 2 pages:
 Technologies (TBC)
 • React
 • Bootstrap
-• Ordnance Survey API
+• Ordnance Survey/Map API
 • Postman
 
 Roadmap
 
 1. Create a simple welcome page for my app
 2. Create a simple results page for my app with headings: ‘map’, ‘results list’ and ‘featured green space’
-3. Create a back end that uses an Ordnance Survey API to feed map information through to the results page – test this with Postman
+3. Create a fetch function that uses a map API to feed map information through to the results page – test this with Postman
 4. Ensure that map data is being fed through correctly to results page
 5. Add a marker to map for a featured green space and make sure it is showing up correctly
 6. Make sure that the featured green space data is showing correctly in the list
