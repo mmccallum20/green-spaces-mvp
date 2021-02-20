@@ -15,6 +15,9 @@ function MapData(props) {
     zoom: 16,
   });
 
+  let p = props.selectedParkArray;
+  console.log(...p);
+
   return (
     <div className="MapData">
       <h2>Location Data for {m.place_name}</h2>

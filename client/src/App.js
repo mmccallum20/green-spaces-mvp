@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PostcodeForm from "./components/PostcodeForm";
 import MapData from "./components/MapData";
 import ParkData from "./components/ParkData";
-import ReactMapGL, { Marker } from "react-map-gl";
 import "./App.css";
 
 const BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
@@ -15,6 +14,7 @@ function App() {
   const [mapDetails, setMapDetails] = useState(null);
   const [parkDetails, setParkDetails] = useState(null); //do I need an array/object here?
   const [error, setError] = useState("");
+  const [selectedParkArray, setSelectedParkArray] = useState(null);
 
   async function pause(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -65,7 +65,12 @@ function App() {
       setError(`Uh oh, network says no: ${err.message}`);
     }
     setLoading(false);
+    //setSelectedParkArray();
   }
+
+  // function handleSelectedParkArray(selectedParkArray) {
+  //   console.log(selectedParkArray);
+  // }
 
   return (
     <div className="App">
@@ -73,9 +78,19 @@ function App() {
 
       <PostcodeForm onSubmit={(postcode) => getData(postcode)} />
 
-      {mapDetails && <MapData mapDetails={mapDetails} />}
+      {mapDetails && (
+        <MapData
+          mapDetails={mapDetails}
+          selectedParkArray={selectedParkArray}
+        />
+      )}
 
-      {parkDetails && <ParkData parkDetails={parkDetails} />}
+      {parkDetails && (
+        <ParkData
+          parkDetails={parkDetails}
+          sendSelectedParks={(e) => setSelectedParkArray(e)}
+        />
+      )}
 
       {loading && (
         <h3 style={{ color: "green" }}>Loading your local data...</h3>

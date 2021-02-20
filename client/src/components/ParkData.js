@@ -26,7 +26,9 @@ function ParkData(props) {
     }
   }
 
-  console.log(selectedParkArray);
+  props.sendSelectedParks(selectedParkArray);
+
+  //console.log(selectedParkArray);
 
   ///props.parkDetails.features[3].properties.category === "parks, leisure"
 
