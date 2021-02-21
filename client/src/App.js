@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import PostcodeForm from "./components/PostcodeForm";
-import MapData from "./components/MapData";
 import ParkData from "./components/ParkData";
+import ReactMapGL, { Marker } from "react-map-gl";
+
 import "./App.css";
 
 const BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
@@ -10,11 +11,41 @@ const BASE_URL_2 =
 const API_KEY = process.env.REACT_APP_MAPBOX_TOKEN; //use a new API key here - please keep in a private file;
 
 function App() {
+  // let newLatitude = 51.5074;
+  // let newLongitude = 0.1278;
+
+  // function reducer(viewport, action) {
+  //   switch (action.type) {
+  //     case "latitude":
+  //       return { latitude: viewport.latitude };
+  //     case "longitude":
+  //       return { longitude: viewport.longitude };
+  //     default:
+  //       return viewport;
+  //   }
+  // }
+
   const [loading, setLoading] = useState(false);
-  const [mapDetails, setMapDetails] = useState(null);
   const [parkDetails, setParkDetails] = useState(null); //do I need an array/object here?
+  const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
   const [selectedParkArray, setSelectedParkArray] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [viewport, setViewport] = useState({
+    latitude: 0,
+    longitude: 0,
+    width: "100vw",
+    height: "100vh",
+    zoom: 16,
+  });
+
+  // function setLongitude() {
+  //   dispatch({ type: "longitude" });
+
+  // function updateViewportState() {
+  //   setViewport(viewport);
+  // }
 
   async function pause(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -34,9 +65,11 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setMapDetails(data);
-        let newLatitude = data.features[0].center[1];
-        let newLongitude = data.features[0].center[0];
-        getParkData(newLatitude, newLongitude);
+        let latitude = data.features[0].center[1];
+        let longitude = data.features[0].center[0];
+        setLatitude(latitude);
+        setLongitude(longitude);
+        getParkData(latitude, longitude);
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -48,14 +81,16 @@ function App() {
     setLoading(false);
   }
 
-  async function getParkData(newLatitude, newLongitude) {
-    let parkDataUrl = `${BASE_URL_2}${newLongitude},${newLatitude}&access_token=${API_KEY}`;
+  async function getParkData(latitude, longitude) {
+    let parkDataUrl = `${BASE_URL_2}${longitude},${latitude}&access_token=${API_KEY}`;
 
     try {
       let response = await fetch(parkDataUrl);
       if (response.ok) {
         let data = await response.json();
         setParkDetails(data);
+        console.log(latitude);
+        console.log(longitude);
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -69,6 +104,7 @@ function App() {
   }
 
   // function handleSelectedParkArray(selectedParkArray) {
+  //   //setSelectedParkArray(selectedParkArray);
   //   console.log(selectedParkArray);
   // }
 
@@ -78,19 +114,31 @@ function App() {
 
       <PostcodeForm onSubmit={(postcode) => getData(postcode)} />
 
-      {mapDetails && (
-        <MapData
-          mapDetails={mapDetails}
-          selectedParkArray={selectedParkArray}
-        />
-      )}
-
       {parkDetails && (
         <ParkData
           parkDetails={parkDetails}
           sendSelectedParks={(e) => setSelectedParkArray(e)}
         />
       )}
+
+      <div className="MapData">
+        {/* <h2>Location Data for {mapDetails.features.place_name}</h2>
+        <ul>Your latitude is: {mapDetails.features.center[1]}</ul>
+        <ul>Your longitude is: {mapDetails.features.center[0]} </ul> */}
+        <div>
+          {mapDetails && (
+            <ReactMapGL
+              className="mapbox-container" //not sure if I want to keep this
+              {...viewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
+              onViewportChange={(viewport) => setViewport(viewport)}
+            >
+              Marker Here
+            </ReactMapGL>
+          )}
+        </div>
+      </div>
 
       {loading && (
         <h3 style={{ color: "green" }}>Loading your local data...</h3>
