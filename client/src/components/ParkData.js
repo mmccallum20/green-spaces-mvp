@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import MapData from "./MapData";
 
 function ParkData(props) {
   let p = props.parkDetails;
   //let parkArray = [];
   let selectedParkArray = [];
 
-  // const [selectedParkArray, setSelectedParkArray] = useState([]);
+  //const [selectedParkArray, setSelectedParkArray] = useState([]);
   //const [parkArray, setParkArray] = useState([]);
 
   useEffect(() => {
@@ -47,6 +48,9 @@ function ParkData(props) {
         <ul>
           {/* {parkArray && parkArray.map((name) => <li key={name}> {name} </li>)} */}
         </ul>
+      </div>
+      <div>
+        <MapData latitude={props.latitude} longitude={props.longitude} />
       </div>
     </div>
   );

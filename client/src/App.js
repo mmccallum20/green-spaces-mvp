@@ -1,7 +1,8 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import PostcodeForm from "./components/PostcodeForm";
 import ParkData from "./components/ParkData";
-import ReactMapGL, { Marker } from "react-map-gl";
+import MapData from "./components/MapData";
+// import ReactMapGL, { Marker } from "react-map-gl";
 
 import "./App.css";
 
@@ -30,15 +31,8 @@ function App() {
   const [mapDetails, setMapDetails] = useState(null);
   const [error, setError] = useState("");
   const [selectedParkArray, setSelectedParkArray] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [viewport, setViewport] = useState({
-    latitude: 0,
-    longitude: 0,
-    width: "100vw",
-    height: "100vh",
-    zoom: 16,
-  });
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
 
   // function setLongitude() {
   //   dispatch({ type: "longitude" });
@@ -67,8 +61,8 @@ function App() {
         setMapDetails(data);
         let latitude = data.features[0].center[1];
         let longitude = data.features[0].center[0];
-        setLatitude(latitude);
-        setLongitude(longitude);
+        // setLatitude(latitude);
+        // setLongitude(longitude);
         getParkData(latitude, longitude);
       } else {
         setError(
@@ -100,6 +94,9 @@ function App() {
       setError(`Uh oh, network says no: ${err.message}`);
     }
     setLoading(false);
+    setLatitude(latitude);
+    setLongitude(longitude);
+
     //setSelectedParkArray();
   }
 
@@ -117,6 +114,8 @@ function App() {
       {parkDetails && (
         <ParkData
           parkDetails={parkDetails}
+          latitude={latitude}
+          longitude={longitude}
           sendSelectedParks={(e) => setSelectedParkArray(e)}
         />
       )}
@@ -125,19 +124,6 @@ function App() {
         {/* <h2>Location Data for {mapDetails.features.place_name}</h2>
         <ul>Your latitude is: {mapDetails.features.center[1]}</ul>
         <ul>Your longitude is: {mapDetails.features.center[0]} </ul> */}
-        <div>
-          {mapDetails && (
-            <ReactMapGL
-              className="mapbox-container" //not sure if I want to keep this
-              {...viewport}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-              mapStyle="mapbox://styles/marym20/ckl7gi1j30jxn17mj4j8gvu25"
-              onViewportChange={(viewport) => setViewport(viewport)}
-            >
-              Marker Here
-            </ReactMapGL>
-          )}
-        </div>
       </div>
 
       {loading && (
