@@ -1,0 +1,18 @@
+.ParkData {
+  height: auto;
+}
+
+.GreenSpacesList {
+  height: auto;
+}
+
+.pointer-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.pointer-btn img {
+  width: 50px;
+  height: auto;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PostcodeForm from "./components/PostcodeForm";
 import ParkData from "./components/ParkData";
-import MapData from "./components/MapData";
+// import MapData from "./components/MapData";
 // import ReactMapGL, { Marker } from "react-map-gl";
 
 import "./App.css";
@@ -58,11 +58,11 @@ function App() {
       let response = await fetch(url);
       if (response.ok) {
         let data = await response.json();
-        setMapDetails(data);
+        //setMapDetails(data);
         let latitude = data.features[0].center[1];
         let longitude = data.features[0].center[0];
-        // setLatitude(latitude);
-        // setLongitude(longitude);
+        setLatitude(latitude);
+        setLongitude(longitude);
         getParkData(latitude, longitude);
       } else {
         setError(
@@ -83,8 +83,7 @@ function App() {
       if (response.ok) {
         let data = await response.json();
         setParkDetails(data);
-        console.log(latitude);
-        console.log(longitude);
+        //handleCoordinates(latitude, longitude);
       } else {
         setError(
           `Uh oh, server says no: ${response.status} ${response.statusText}`
@@ -94,16 +93,14 @@ function App() {
       setError(`Uh oh, network says no: ${err.message}`);
     }
     setLoading(false);
-    setLatitude(latitude);
-    setLongitude(longitude);
 
     //setSelectedParkArray();
   }
 
-  // function handleSelectedParkArray(selectedParkArray) {
-  //   //setSelectedParkArray(selectedParkArray);
-  //   console.log(selectedParkArray);
-  // }
+  function handleCoordinates(latitude, longitude) {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  }
 
   return (
     <div className="App">
@@ -117,6 +114,7 @@ function App() {
           latitude={latitude}
           longitude={longitude}
           sendSelectedParks={(e) => setSelectedParkArray(e)}
+          onChange={() => handleCoordinates(latitude, longitude)}
         />
       )}
 
