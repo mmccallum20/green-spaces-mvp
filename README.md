@@ -4,7 +4,7 @@ MVP Project Description: Green Spaces App
 
 Summary
 
-Green Spaces App is an app that helps you plan your walking activities to local green spaces, especially during lockdown periods.
+Green Spaces is an app that helps you plan your walking activities to local green spaces, especially during lockdown periods.
 
 Motivation and Description
 
@@ -23,20 +23,24 @@ This section describes the minimal viable product that must be produced.
 Features
 
 • Allow users to enter their postcode into a search box
-• From this postcode, produce: - a map of the local area with clickable markers showing a local green space - a clickable list highlighting 1 local green space available to visit with their distance from the entered postcode - a “featured” section – when a green space is clicked on the map or the list, the details of that green space shows up in this section of the page, with a short description
+• From this postcode, produce: - a map of the local area with clickable markers showing a local green space - a clickable list highlighting at least one local green space available to visit with their distance from the entered postcode - a “featured” section – when a green space is clicked on the map or the list, the details of that green space shows up in this section of the page, with a short description
 
 Design Overview
 
-The app will consist of 2 pages:
+The app will consist of 1 page:
 
 1. A home page, which shows the App name and a welcome message, and a form where the postcode should be entered
-2. A results page with a map, a list of green spaces and an area to show a featured green space
+2. A results section with a map, a list of green spaces and an area to show a featured green space
 
 Technologies (TBC)
 • React
 • Bootstrap
 • Ordnance Survey/Map API
 • Postman
+
+Ideal User Flow
+
+[Check out my ideal User Flow here](/UserFlow-GreenSpaces.jpg)
 
 Roadmap
 
@@ -54,7 +58,7 @@ Nice to Have Product
 This section describes additional features that may be implemented, time permitting.
 
 Features
-Be able to list multiple green spaces from entering only one postcode (3 maximum) – all being able to show up in the list and show in the featured section if clicked on
+Be able to list multiple green spaces from entering only one postcode – all being able to show up in the list and show in the featured section if clicked on
 Be able to add a diary feature, so that walks can be scheduled for the future
 Be able to add a local friend to your app
 Be able to add that friend to a planned walk
@@ -80,3 +84,6 @@ Roadmap
 8. Make sure the friends data is being saved correctly in the database
 9. Create a section on the page for friends, each with a button for “Add to a walk”
 10. Create a “add to walk” form that displays data for a scheduled walk and allows you to add a friend.
+
+This is a student project that was created at
+[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.\_

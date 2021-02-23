@@ -4,7 +4,7 @@ MVP Project Description: Green Spaces App
 
 Summary
 
-Green Spaces App is an app that helps you plan your walking activities to local green spaces, especially during lockdown periods.
+Green Spaces is an app that helps you plan your walking activities to local green spaces, especially during lockdown periods.
 
 Motivation and Description
 
@@ -27,16 +27,20 @@ Features
 
 Design Overview
 
-The app will consist of 2 pages:
+The app will consist of 1 page:
 
 1. A home page, which shows the App name and a welcome message, and a form where the postcode should be entered
-2. A results page with a map, a list of green spaces and an area to show a featured green space
+2. A results section with a map, a list of green spaces and an area to show a featured green space
 
 Technologies (TBC)
 • React
 • Bootstrap
 • Ordnance Survey/Map API
 • Postman
+
+Ideal User Flow
+
+[Check out my ideal User Flow here](/UserFlow-GreenSpaces.jpg)
 
 Roadmap
 
@@ -80,3 +84,6 @@ Roadmap
 8. Make sure the friends data is being saved correctly in the database
 9. Create a section on the page for friends, each with a button for “Add to a walk”
 10. Create a “add to walk” form that displays data for a scheduled walk and allows you to add a friend.
+
+This is a student project that was created at
+[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.\_
