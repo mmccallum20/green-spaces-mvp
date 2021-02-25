@@ -4,14 +4,7 @@ import "./ParkData.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 function ParkData(props) {
-  //const [parkData, setParkData] = useState([]);
-  //const [parkArray, setParkArray] = useState([]);
-
   const [selectedPark, setSelectedPark] = useState(null);
-
-  // console.log(props.latitude);
-  // console.log(props.longitude);
-
   const [viewport, setViewport] = useState({
     latitude: props.latitude,
     longitude: props.longitude,
@@ -21,7 +14,6 @@ function ParkData(props) {
   });
 
   let p = props.parkDetails;
-  //let parkArray = [];
   let chosenParkArray = [];
   let parkArray = [];
 
@@ -33,7 +25,6 @@ function ParkData(props) {
     if (!values) {
       continue;
     } else if (values === "park, leisure" || "picnic") {
-      //parkArray.push(p.features[i].text);
       parkArray.push(p.features[i].place_name);
       let chosenParkName = p.features[i].place_name;
       let chosenParkLatitude = p.features[i].geometry.coordinates[1];
@@ -46,25 +37,14 @@ function ParkData(props) {
     }
   }
 
-  console.log(parkArray);
-  console.log(chosenParkArray);
-
-  //console.log(props.parkdetails.parkArray);
-
-  console.log(props.latitude);
-  console.log(props.longitude);
-
   return (
     <div className="ParkData">
       <h2>Your top green spaces are:</h2>
       <div className="GreenSpacesList">
-        Data here
         {parkArray.map((a) => (
           <li key={a}>{a}</li>
         ))}
       </div>
-
-      {/* <li>{selectedParkArray[0].selectedParkName}</li> */}
       <div>
         <ReactMapGL
           className="mapbox-container" //not sure if I want to keep this

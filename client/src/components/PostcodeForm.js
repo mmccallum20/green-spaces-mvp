@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./PostcodeForm.css";
 
 function PostcodeForm(props) {
   const [postcode, setPostcode] = useState("");
@@ -15,10 +18,9 @@ function PostcodeForm(props) {
 
   return (
     <div className="PostcodeForm">
-      <h2>
-        Enter your place name, street name, postal or zip code to find a local
-        green space.
-      </h2>
+      <h4>Enter your place name, </h4>
+      <h4>street name, postal or zip code</h4>
+      <h4>to find a local green space.</h4>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="postcode" />
@@ -29,7 +31,7 @@ function PostcodeForm(props) {
           value={postcode}
           onChange={(e) => handleInputChange(e)}
         />
-        <button>Submit</button>
+        <button className="btn btn-success">Submit</button>
       </form>
     </div>
   );

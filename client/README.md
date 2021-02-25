@@ -63,6 +63,7 @@ Be able to add a diary feature, so that walks can be scheduled for the future
 Be able to add a local friend to your app
 Be able to add that friend to a planned walk
 Be able to track the number of steps completed using a pedometer
+Be able to add a new green space, if not found on the app
 
 Technologies (TBC)
 • A diary API (?)

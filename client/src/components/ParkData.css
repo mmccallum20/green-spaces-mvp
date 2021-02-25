@@ -4,6 +4,7 @@
 
 .GreenSpacesList {
   height: auto;
+  padding-bottom: 20px;
 }
 
 .pointer-btn {
@@ -15,4 +16,8 @@
 .pointer-btn img {
   width: 50px;
   height: auto;
+}
+
+.ReactMapGL {
+  padding-top: 20px;
 }
