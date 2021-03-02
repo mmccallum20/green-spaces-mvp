@@ -1,90 +1,74 @@
-# green-spaces-mvp
+# Getting Started with Create React App
 
-MVP Project Description: Green Spaces App
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Summary
+## Available Scripts
 
-Green Spaces is an app that helps you plan your walking activities to local green spaces, especially during lockdown periods.
+Use
 
-Motivation and Description
+### 'cd client' to access the project directory
 
-Over the past year, many governments worldwide instituted lockdowns for their citizens to prevent the spread of COVID-19. This has had a serious negative impact on the mental health of the general population, particularly those from lower socio-economic backgrounds. (<https://www.mind.org.uk/media-a/5929/the-mental-health-emergency_a4_final.pdf>).
+In the project directory, you can run:
 
-In the UK currently, one of the few permitted recreational reasons to leave the house is to “exercise with your household (or support bubble) or one other person (in which case you should stay 2m apart). Exercise should be limited to once per day, and you should not travel outside your local area.” Source: <https://www.gov.uk/guidance/national-lockdown-stay-at-home#summary-what-you-can-and-cannot-do-during-the-national-lockdown>
+### `yarn start`
 
-It has been well documented that visiting green spaces can have a positive effect on mental health and reduce symptoms of anxiety, depression and hopelessness. (<https://www.kingsfund.org.uk/projects/improving-publics-health/access-green-and-open-spaces-and-role-leisure-services>)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Visiting local green spaces during lockdown have had a great positive effect on my mental health and have also led me to discover parts of my local area that I have never visited before e.g. The Regent’s Canal. This has inspired me to build an app that informs people of local green spaces in their area that they can visit easily, whilst respecting governmental lockdown restrictions.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Minimal Product
+### `yarn test`
 
-This section describes the minimal viable product that must be produced.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Features
+### `yarn build`
 
-• Allow users to enter their postcode into a search box
-• From this postcode, produce: - a map of the local area with clickable markers showing a local green space - a clickable list highlighting at least one local green space available to visit with their distance from the entered postcode - a “featured” section – when a green space is clicked on the map or the list, the details of that green space shows up in this section of the page, with a short description
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Design Overview
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-The app will consist of 1 page:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-1. A home page, which shows the App name and a welcome message, and a form where the postcode should be entered
-2. A results section with a map, a list of green spaces and an area to show a featured green space
+### `yarn eject`
 
-Technologies (TBC)
-• React
-• Bootstrap
-• Ordnance Survey/Map API
-• Postman
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Ideal User Flow
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-[Check out my ideal User Flow here](/UserFlow-GreenSpaces.jpg)
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Roadmap
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-1. Create a simple welcome page for my app
-2. Create a simple results page for my app with headings: ‘map’, ‘results list’ and ‘featured green space’
-3. Create a fetch function that uses a map API to feed map information through to the results page – test this with Postman
-4. Ensure that map data is being fed through correctly to results page
-5. Add a marker to map for a featured green space and make sure it is showing up correctly
-6. Make sure that the featured green space data is showing correctly in the list
-7. Ensure that when the list item or marker is clicked on, the featured green space data shows up in the featured section
-8. Add some Bootstrap features
+## Learn More
 
-Nice to Have Product
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-This section describes additional features that may be implemented, time permitting.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Features
-Be able to list multiple green spaces from entering only one postcode – all being able to show up in the list and show in the featured section if clicked on
-Be able to add a diary feature, so that walks can be scheduled for the future
-Be able to add a local friend to your app
-Be able to add that friend to a planned walk
-Be able to track the number of steps completed using a pedometer
-Be able to add a new green space, if not found on the app
+### Code Splitting
 
-Technologies (TBC)
-• A diary API (?)
-• A pedometer API (?)
-• React
-• Bootstrap
-• MySQL
-• Postman
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-Roadmap
+### Analyzing the Bundle Size
 
-1. Ensure that current code allows for 3 locations to be listed on the results page, being clickable and listed properly in the green spaces list
-2. Create a database to hold data for future walks eg date, time, destination
-3. Integrate a diary app/API – not sure how to do this!
-4. Make sure diary data is syncing correctly to database
-5. Create a functioning form for “Schedule a walk”
-6. Create a “Friends” database
-7. Add a “Add a friend” form with the correct fields corresponding to the database fields
-8. Make sure the friends data is being saved correctly in the database
-9. Create a section on the page for friends, each with a button for “Add to a walk”
-10. Create a “add to walk” form that displays data for a scheduled walk and allows you to add a friend.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-This is a student project that was created at
-[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.\_
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -73,6 +73,7 @@ function ParkData(props) {
 
           {selectedPark ? (
             <Popup
+              className="Popup"
               onClose={() => {
                 setSelectedPark(null);
               }}
