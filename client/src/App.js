@@ -4,7 +4,6 @@ import ParkData from "./components/ParkData";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import "./App.css";
-import background from "./pexels-matthias-cooper-580900.jpg";
 
 const BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const BASE_URL_2 =
@@ -78,15 +77,7 @@ function App() {
   }
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div className="App">
       <div className="Card">
         <Card>
           <Card.Body style={{ color: "#61b15a" }}>
